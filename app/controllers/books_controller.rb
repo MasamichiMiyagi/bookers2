@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    @users = User.all
   end
 
   def show
@@ -47,7 +48,7 @@ class BooksController < ApplicationController
   private #←一種の境界線、「ここから下はこのcontrollerの中でしか呼び出せません」という意味があるので、他アクション(create,index,show等)を巻き込まないように一番下に書く。
   #↓以下ストロングパラメータ
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :profile_image)
   end
 
 end
