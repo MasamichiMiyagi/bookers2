@@ -19,7 +19,7 @@
     </table>
 
     <div class="row">
-      <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block edit_user_id" do %>
+      <%= link_to edit_user_path(current_user), class: 'btn btn-outline-secondary btn-block edit_user_id' do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     </div>
@@ -63,8 +63,11 @@
         <tr>
           <!-- ここはユーザーなのでbookじゃない? -->
           <% @users.each do |user| %>
+          <tr>
             <td>
-              <%= image_tag user.get_profile_image(80,80) %>
+              <%= link_to user_path(user.id) do %>
+                <%= image_tag user.get_profile_image(80,80) %>
+              <% end %>
             </td>
             <td>
               <%= user.name %>
@@ -72,6 +75,7 @@
             <td>
               <%= link_to "Show", user_path(user.id) %>
             </td>
+          </tr>
           <% end %>
         </tr>
       </tbody>

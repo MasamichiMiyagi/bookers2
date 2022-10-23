@@ -23,7 +23,7 @@
     </table>
 
     <div class="row">
-      <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block edit_user_id" do %>
+      <%= link_to edit_user_path(@user), class: 'btn btn-outline-secondary btn-block edit_user_id' do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     </div>
@@ -61,26 +61,30 @@
       <tbody>
         <tr>
         <!-- ここは特定のbookを呼び出す -->
+        <tr>
         <td>
-          <%= link_to image_tag @user.get_profile_image(80,80), "/users/:id" %>
+          <%= link_to user_path(@user.id) do %>
+            <%= image_tag @user.get_profile_image(80,80) %><br><%= @user.name %>
+          <% end %>
         </td>
         <td>
-          <%= link_to book.title, book_path(book.id) %>
+          <%= link_to @book.title, book_path(@book.id) %>
         </td>
         <td>
-          <%= book.body %>
+          <%= @book.body %>
         </td>
 
         <td>
           <% if @book.user == current_user %>
-            <a class="btn btn-success" href="/books/:id/edit" role="button">Edit</a>
+            <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %>
           <% end %>
         </td>
         <td>
           <% if @book.user == current_user %>
-            <a data-confilm="本当に消しますか？" class="btn btn-danger" rel="nofollow" data-method="delete" href="/books/:id" role="button">Destroy</a>
+            <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger" %>
           <% end %>
         </td>
+        </tr>
         </tr>
       </tbody>
     </table>
