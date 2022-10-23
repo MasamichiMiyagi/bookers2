@@ -30,7 +30,7 @@
             <% if user_signed_in? %>
             <li class="nav-item">
               <i class="fas fa-home" style="color: white;"></i>
-              <%= link_to "Home", root_path, class: "nav-link text-light" %>
+              <%= link_to "Home", user_path(@user.id), class: "nav-link text-light" %>
             </li>
             <li class="nav-item">
               <i class="fa-solid fa-users" style="color: white;"></i>
@@ -68,11 +68,6 @@
         </div>
       </nav>
     </header>
-
-
-    <!-- フラッシュメッセージ -->
-    <%= render 'shared/flash_message' %>
-
 
     <main>
     <%= yield %>

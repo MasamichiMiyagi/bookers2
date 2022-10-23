@@ -2,6 +2,15 @@
 
 <h2>Sign up</h2>
 
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %> errors prohibited this book from being saved:
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
