@@ -32,9 +32,9 @@
     </table>
 
     <div class="row">
-      <a class="btn btn-outline-secondary btn-block edit_user_id" href="/users/:id/edit">
+      <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block edit_user_id" do %>
         <i class="fas fa-user-cog"></i>
-      </a>
+      <% end %>
     </div>
 
 
@@ -74,13 +74,20 @@
         </tr>
       </thead>
       <tbody>
-        <!--　ここは特定のユーザーから投稿したものを引き出すのでbookでOK? -->
+        <tr>
+        <!-- ここは特定のユーザーから投稿したものを引き出すのでbookでOK? -->
         <% @books.each do |book| %>
-          <div>
+          <td>
+            <%= link_to image_tag @user.get_profile_image(80,80), "/users/:id" %>
+          </td>
+          <td>
             <%= link_to book.title, book_path(book.id) %>
+          </td>
+          <td>
             <%= book.body %>
-          </div>
+          </td>
         <% end %>
+        </tr>
       </tbody>
     </table>
   </div>
